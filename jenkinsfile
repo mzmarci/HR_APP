@@ -4,7 +4,7 @@ pipeline {
     environment {
         myuser = credentials ('dockerhub-user')
         mypassword = credentials ('dockerhub-password')
-        version = "latest10"
+        version = "v3"
     }
     
     stages {
