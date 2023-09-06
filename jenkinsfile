@@ -6,8 +6,6 @@ pipeline {
         mypassword = credentials ('dockerhub-password')
         version = "v3"
 
-        ACCCESS_KEY_ID = credentials ('ACCESS_KEY_ID')
-        SECRET_ACCESS_KEY = credentials('SECRET_ACCESS_KEY')
     }
     
     stages {
