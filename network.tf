@@ -1,5 +1,9 @@
 resource "aws_vpc" "hr_app_vpc" {
   cidr_block = "10.0.0.0/16"
+  instance_tenancy = "default"
+  enable_dns_support = true
+  enable_dns_hostnames = true
+
   tags = {
     Name = "hr_app_vpc"
   }
@@ -9,6 +13,7 @@ resource "aws_subnet" "subnet_1" {
   vpc_id            = aws_vpc.hr_app_vpc.id
   cidr_block        = "10.0.3.0/24"
   availability_zone = "eu-west-1a"
+  
   tags = {
     Name = "Public subnet1"
   }
@@ -18,6 +23,7 @@ resource "aws_subnet" "subnet_2" {
   vpc_id            = aws_vpc.hr_app_vpc.id
   cidr_block        = "10.0.4.0/24"
   availability_zone = "eu-west-1b"
+  
   tags = {
     Name = "Public subnet2"
   }
@@ -37,7 +43,6 @@ resource "aws_route_table" "route_1" {
   vpc_id = aws_vpc.hr_app_vpc.id
 
   tags = {
-
     Name = "RouteTable"
   }
 }

@@ -1,10 +1,10 @@
 resource "aws_security_group" "hr_app_security_group" {
   name        = "hr_app_security_group"
-  description = "security group for hr_app"
+  description = "Allow SSH and HTTP Connection"
   vpc_id      = aws_vpc.hr_app_vpc.id
 
   ingress {
-    description = "TLS from VPC"
+    description = "Allow inbound and outbound connection"
     from_port   = 443
     to_port     = 443
     protocol    = "tcp"
@@ -13,7 +13,7 @@ resource "aws_security_group" "hr_app_security_group" {
   }
 
   ingress {
-    description = "TLS from VPC"
+    description = "Allow inbound and outbound connection"
     from_port   = 80
     to_port     = 80
     protocol    = "tcp"
