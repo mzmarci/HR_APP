@@ -60,3 +60,15 @@ resource "aws_route_table_association" "sub_route_2" {
   subnet_id      = aws_subnet.subnet_2.id
   route_table_id = aws_route_table.route_2.id
 }
+
+resource "aws_route" "awsroute" {
+  route_table_id         = aws_route_table.route_1.id
+  gateway_id             = aws_internet_gateway.HR_APP_IGW.id
+  destination_cidr_block = "0.0.0.0/0"
+}
+
+resource "aws_route" "awsroute" {
+  route_table_id         = aws_route_table.route_2.id
+  gateway_id             = aws_internet_gateway.HR_APP_IGW.id
+  destination_cidr_block = "0.0.0.0/0"
+}
