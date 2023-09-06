@@ -25,11 +25,11 @@ resource "aws_subnet" "subnet_2" {
 
 
 
-resource "aws_internet_gateway" "HR_APP_IGW" {
+resource "aws_internet_gateway" "hr_app_igw" {
   vpc_id = aws_vpc.hr_app_vpc.id
 
   tags = {
-    Name = "HR_APP igw"
+    Name = "hr_app igw"
   }
 }
 
@@ -61,14 +61,14 @@ resource "aws_route_table_association" "sub_route_2" {
   route_table_id = aws_route_table.route_2.id
 }
 
-resource "aws_route" "awsroute" {
+resource "aws_route" "route_1" {
   route_table_id         = aws_route_table.route_1.id
-  gateway_id             = aws_internet_gateway.HR_APP_IGW.id
+  gateway_id             = aws_internet_gateway.hr_app_igw.id
   destination_cidr_block = "0.0.0.0/0"
 }
 
-resource "aws_route" "awsroute" {
+resource "aws_route" "route_2" {
   route_table_id         = aws_route_table.route_2.id
-  gateway_id             = aws_internet_gateway.HR_APP_IGW.id
+  gateway_id             = aws_internet_gateway.hr_app_igw.id
   destination_cidr_block = "0.0.0.0/0"
 }
