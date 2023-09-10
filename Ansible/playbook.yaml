@@ -1,19 +1,16 @@
 ---
 - host: hrapp
   become:  yes
-  
-  vars:
-  
   task:
 
-      - name: Install git
+    - name: Install git
       apt:
         name: git
         state: present
         update_cache: yes
-        
-      - name: install dependencies for docker
-      apt:
+
+    - name: install dependencies for docker
+      yum:
         name: "{{item}}"
         state: present
         update_cache: yes
@@ -24,30 +21,30 @@
         - gnupg-agent
         - software-properties-common
 
-      - name: yum repo for docker
-          yum_repository:
-            name: docker
-            description: "Repo for Docker"
-            file: docker_repo
-            baseurl: https://download.docker.com/linux/centos/7/x86_64/stable/
-            enabled: yes
-            state: present
-            gpgcheck: no
+    - name: yum repo for docker
+      yum_repository:
+        name: docker
+        description: "Repo for Docker"
+        file: docker_repo
+        baseurl: https://download.docker.com/linux/centos/7/x86_64/stable/
+        enabled: yes
+        state: present
+        gpgcheck: no
       
-      - name: install docker package
-          command: yum install -y docker-ce --nobest
+    - name: install docker package
+      command: yum install -y docker-ce --nobest
           
 
-      - name: start and enable docker service
-          service:
-            name: docker
-            state: started
-            enabled: yes
+    - name: start and enable docker service
+      service:
+        name: docker
+        state: started
+        enabled: yes
 
-      - name: Add docker user to a super user
+    - name: Add docker user to a super user
       command: usermod -aG docker $USER
       
-      - name: restart docker
+    - name: restart docker
       service: 
         name: docker 
         state: restarted
