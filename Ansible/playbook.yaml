@@ -1,10 +1,10 @@
 ---
-- host: hrapp
-  become:  yes
-  task:
+- hosts: hrapp
+  become: true
+  tasks:
 
     - name: Install git
-      apt:
+      yum:
         name: git
         state: present
         update_cache: yes
@@ -12,7 +12,7 @@
     - name: install dependencies for docker
       yum:
         name: "{{item}}"
-        state: present
+        state: lastest
         update_cache: yes
       loop:
         - apt-transport-https
@@ -28,7 +28,7 @@
         file: docker_repo
         baseurl: https://download.docker.com/linux/centos/7/x86_64/stable/
         enabled: yes
-        state: present
+        state: lastest
         gpgcheck: no
       
     - name: install docker package
