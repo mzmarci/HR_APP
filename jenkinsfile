@@ -31,7 +31,7 @@ pipeline {
          steps {
             sh '''
                   docker login -u $myuser -p $mypassword
-                  docker push mzmarci/hrapp:$version
+                  docker push mzmarci/hrapp:v3
                 '''
          }
        }       
