@@ -5,6 +5,7 @@ pipeline {
         myuser = credentials ('dockerhub-user')
         mypassword = credentials ('dockerhub-password')
         version = "v3"
+        keyfile = credentials ('test100.pem')
 
     }
     
@@ -40,6 +41,15 @@ pipeline {
          steps {
             sh '''
                  docker run --name hrapp  --rm -d -p 5000:5000 mzmarci/hrapp:$version
+               '''
+         }
+       }
+           
+    
+       stage ("run ansible") {
+         steps {
+            sh '''
+                 ANSIBLE_HOST_KEY_CHECKING=false ansible-playbook -i inventory --key-file $keyfile playbook.yaml -u ec2-user
                '''
          }
        }
