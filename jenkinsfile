@@ -22,7 +22,8 @@ pipeline {
          steps {
             sh '''
                   cd HR_APP
-                  docker build -t mzmarci/hrapp:$version .
+                  docker build -t hrapp .
+                  docker tag hrapp mzmarci/hrapp
                '''   
          }
        }
