@@ -43,7 +43,7 @@
 
     - name: Add docker user to a super user
       command: usermod -aG docker $USER
-      
+
     - name: restart docker
       service: 
         name: docker 

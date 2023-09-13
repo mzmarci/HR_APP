@@ -13,7 +13,7 @@ pipeline {
          steps {
             sh '''
             git clone https://github.com/mzmarci/HR_APP.git
-            usermod -aG docker jenkins
+           
             '''
          }
        }
