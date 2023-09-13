@@ -23,7 +23,6 @@ pipeline {
             sh '''
                   cd HR_APP
                   docker build -t hrapp .
-                  docker tag hrapp mzmarci/hrapp
                '''   
          }
        }
@@ -32,7 +31,7 @@ pipeline {
          steps {
             sh '''
                   docker login -u $myuser -p $mypassword
-                  docker push mzmarci/hrapp:$version
+                  docker push mzmarci/hrapp:$version .
                 '''
          }
        }       
