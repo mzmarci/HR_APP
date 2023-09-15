@@ -5,7 +5,7 @@ pipeline {
         myuser = credentials ('dockerhub-user')
         mypassword = credentials ('dockerhub-password')
         version = "v3"
-        keyfile = credentials ('test100.pem')
+        keyfile = credentials ('private-key')
 
     }
     
@@ -49,7 +49,7 @@ pipeline {
        stage ("run ansible") {
          steps {
             sh '''
-                 ANSIBLE_HOST_KEY_CHECKING=false ansible-playbook -i inventory --key-file $keyfile playbook.yaml -u ec2-user
+                 ANSIBLE_HOST_KEY_CHECKING=false ansible-playbook -i inventory --key-file $private-key playbook.yaml -u ec2-user
                '''
          }
        }
