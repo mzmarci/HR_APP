@@ -51,7 +51,7 @@ pipeline {
             sh '''
                  cd HR_APP
                  cd Ansible
-                 ANSIBLE_HOST_KEY_CHECKING=false ansible-playbook -i inventory --key-file $private-key playbook.yaml -u ec2-user
+                 ANSIBLE_HOST_KEY_CHECKING=false ansible-playbook -i inventory --key-file $private-key playbook.yml -u ec2-user
                '''
          }
        }
