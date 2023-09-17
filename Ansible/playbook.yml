@@ -1,6 +1,7 @@
 ---
 - hosts: hrapp
   become: true
+  become_method: sudo
   tasks:
 
     - name: Install git
