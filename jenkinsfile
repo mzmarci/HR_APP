@@ -50,7 +50,6 @@ pipeline {
        stage ("run ansible") {
          steps {
             sh '''
-                 cd HR_APP
                  cd ansible
                  pwd
                  ls
