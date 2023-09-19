@@ -50,9 +50,9 @@ pipeline {
        stage ("run ansible") {
          steps {
             sh '''
-                 cd ansible
                  pwd
                  ls
+                 cd ansible
                  ANSIBLE_HOST_KEY_CHECKING=false ansible-playbook -i inventory --key-file $keyfile playbook.yml -u ec2-user
                '''
          }
