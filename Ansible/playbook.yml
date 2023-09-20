@@ -13,7 +13,7 @@
     - name: install dependencies for docker
       yum:
         name: "{{item}}"
-        state: lastest
+        state: latest
         update_cache: yes
       loop:
         - apt-transport-https
