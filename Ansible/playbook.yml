@@ -10,30 +10,16 @@
         state: present
         update_cache: yes
 
-    - name: install dependencies for docker
+    - name: install docker
       yum:
         name: "{{item}}"
         state: latest
         update_cache: yes
       loop:
-        - apt-transport-https
-        - ca-certificates
-        - curl
-        - gnupg-agent
-        - software-properties-common
+       # - ca-certificates
+        - docker
 
-    - name: yum repo for docker
-      yum_repository:
-        name: docker
-        description: "Repo for Docker"
-        file: docker_repo
-        baseurl: https://download.docker.com/linux/centos/7/x86_64/stable/
-        enabled: yes
-        state: lastest
-        gpgcheck: no
-      
-    - name: install docker package
-      command: yum install -y docker-ce --nobest
+
           
 
     - name: start and enable docker service
