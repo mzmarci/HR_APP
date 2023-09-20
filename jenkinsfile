@@ -5,7 +5,6 @@ pipeline {
         myuser = credentials ('dockerhub-user')
         mypassword = credentials ('dockerhub-password')
         version = "v3"
-        keyfile_old = credentials ('private-key')
         keyfile = credentials ('keyfile')
 
     }
