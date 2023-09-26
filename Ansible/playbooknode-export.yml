@@ -14,7 +14,7 @@
  
    
     - name: Installing node_exporter, Update and upgrade hrapp machine (monitoring machine)
-      apt:
+      yum:
         name: "{{item}}"
         state: latest
         update_cache: yes

@@ -14,7 +14,7 @@
  
    
     - name: Installing alertmanager, Update and upgrade monitoringserver (monitoring machine)
-      apt:
+      yum:
         name: "{{item}}"
         state: latest
         update_cache: yes

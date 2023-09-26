@@ -13,7 +13,7 @@
         shell: /bin/false
 
     - name: Installing prometheus, Update and upgrade monitoringserver
-      apt:
+      yum:
         name: "{{item}}"
         state: latest
         update_cache: yes
