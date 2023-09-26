@@ -76,7 +76,13 @@ resource "aws_instance" "Hr_App3" {
   //database_security_group = var.database_security_group.id
   subnet_id                   = aws_subnet.subnet_1.id
   iam_instance_profile        = aws_iam_instance_profile.prometheus_iam_instance_profile.name
-  user_data                   = templatefile("prometheus.yml")
+  //user_data                   = templatefile("${path.module}/prometheus.yml")
+
+  # Copy the prometheus file to instance
+  provisioner "file" {
+    source      = "./prometheus.yml"
+    destination = "/tmp/prometheus.yml"
+  }
   associate_public_ip_address = true
   tags = {
     Name = "Montoring server"
