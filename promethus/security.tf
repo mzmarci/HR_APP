@@ -66,4 +66,14 @@ resource "aws_security_group" "prometheus" {
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
+
+  
+  ingress {
+    description = "Allow SSH inbound and outbound connection"
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+
+  }
 }

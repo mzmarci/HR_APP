@@ -79,10 +79,22 @@ resource "aws_instance" "Hr_App3" {
   //user_data                   = templatefile("${path.module}/prometheus.yml")
 
   # Copy the prometheus file to instance
-  provisioner "file" {
-    source      = "./prometheus.yml"
-    destination = "/tmp/prometheus.yml"
+  //provisioner "file" {
+   // source      = "./upload"
+   // destination = "/tmp"
+  //}
+  
+provisioner "file" {
+    connection {
+      host = self.public_ip
+      type     = "ssh"
+      user     = "ec2-user"
+      private_key = file("${path.module}/test100.pem")
+    }
+    source      = "./upload"
+    destination = "/tmp"
   }
+  
   associate_public_ip_address = true
   tags = {
     Name = "Montoring server"
