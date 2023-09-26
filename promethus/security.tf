@@ -1,7 +1,7 @@
-resource "aws_security_group" "hr_app_security_group" {
-  name        = "hr_app_security_group"
+resource "aws_security_group" "prometheus" {
+  name        = "prometheus"
   description = "Allow SSH and HTTP Connection"
-  vpc_id      = aws_vpc.hr_app_vpc.id
+  vpc_id      = aws_vpc.prometheus_vpc.id
 
   ingress {
     description = "Allow inbound and outbound connection"
@@ -42,3 +42,18 @@ resource "aws_security_group" "hr_app_security_group" {
     Name = "hr_app"
   }
 }
+
+ # Promethus UI
+  ingress {
+    from_port   = 9090
+    to_port     = 9090
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  # Grafana access for 3000
+  ingress {
+    from_port   = 3000
+    to_port     = 3000
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
