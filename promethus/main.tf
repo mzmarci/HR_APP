@@ -74,9 +74,9 @@ resource "aws_instance" "Hr_App3" {
   key_name               = var.ec2_key_name
   vpc_security_group_ids = [aws_security_group.prometheus.id]
   //database_security_group = var.database_security_group.id
-  subnet_id              = aws_subnet.subnet_1.id
-  iam_instance_profile   = aws_iam_instance_profile.prometheus_iam_instance_profile.name
-  user_data              = templatefile("prometheus.yml")
+  subnet_id                   = aws_subnet.subnet_1.id
+  iam_instance_profile        = aws_iam_instance_profile.prometheus_iam_instance_profile.name
+  user_data                   = templatefile("prometheus.yml")
   associate_public_ip_address = true
   tags = {
     Name = "Montoring server"
