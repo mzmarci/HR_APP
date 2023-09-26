@@ -11,9 +11,6 @@
         system: yes
         createhome: no
         shell: /bin/false
-  
-    - name: Add docker user to a super user
-      command: usermod -aG docker prometheus
 
     - name: Installing prometheus, Update and upgrade monitoringserver
       apt:
