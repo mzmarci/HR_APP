@@ -8,7 +8,7 @@
       unarchive:
         src: "https://github.com/prometheus/alertmanager/releases/download/v0.16.1/alertmanager-0.16.1.linux-amd64.tar.gz"
         dest: /tmp/
-        remote_src: no   
+        remote_src: yes  
 
     - name: Add alertmanager user
       user:
