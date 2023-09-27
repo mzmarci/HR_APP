@@ -23,9 +23,6 @@
         dest: /etc/systemd/system/alertmanager.service
       notify:
         - reload daemon
-
-    - name: Start alertmanager
-      command: sudo systemctl alertmanager
     
 
     - name: Check if alertmanager is accessible
