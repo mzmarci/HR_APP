@@ -18,11 +18,6 @@
     src: "https://github.com/prometheus/alertmanager/releases/download/v{{ version }}/alertmanager-{{ version }}.linux-amd64.tar.gz"
     dest: /tmp/
     remote_src: no
-        
-    - name: Delete alertmanager tmp folder
-  file:
-    path: '/tmp/alertmanager-{{ version }}.linux-amd64'
-    state: absent
     
     - name: Start alertmanager service
   service:
