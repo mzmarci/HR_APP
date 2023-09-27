@@ -32,7 +32,7 @@
         status_code: -1
 
     - name: enable alertmanager
-      command: sudo systemctl restart prometheus-alertmanager
+      command: sudo systemctl restart alertmanager
 
     
     - name: Start alertmanager service
