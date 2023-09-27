@@ -23,12 +23,10 @@
         dest: /etc/systemd/system/alertmanager.service
       notify:
         - reload daemon
-    
+
     - name: Start alertmanager service
-      service:
-        name: alertmanager
-        state: started
-        enabled: yes
+      command: sudo systemctl alertmanager.service   start 
+    
 
     - name: Check if alertmanager is accessible
       uri:
@@ -38,6 +36,13 @@
 
     - name: enable alertmanager
       command: sudo systemctl restart prometheus-alertmanager
+
+    
+    - name: Start alertmanager service
+      service:
+        name: alertmanager
+        state: started
+        enabled: yes  
 
 
         
