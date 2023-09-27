@@ -6,4 +6,15 @@
     daemon_reload: yes
 
 - name: restart alertmanager
-  service: name=alertmanager state=restarted enabled=yes
+  service:
+    name: alertmanager
+    state: restarted
+
+- name: reload alertmanager
+  service:
+    name: alertmanager
+    state: reloaded
+
+- name: reload systemd and restart alertmanager
+  command: systemctl daemon-reload
+  notify: restart alertmanager
