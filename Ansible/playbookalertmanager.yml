@@ -25,7 +25,7 @@
         - reload daemon
 
     - name: Start alertmanager service
-      command: sudo systemctl alertmanager.service start 
+      command: sudo systemctl alertmanager.service
     
 
     - name: Check if alertmanager is accessible
