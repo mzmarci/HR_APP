@@ -5,19 +5,19 @@
   become_method: sudo
 
   tasks:
+    
+    - name: Download alertmanager
+  unarchive:
+    src: "https://github.com/prometheus/alertmanager/releases/download/v{{ version }}/alertmanager-{{ version }}.linux-amd64.tar.gz"
+    dest: /tmp/
+    remote_src: no
+
     - name: Add alertmanager user
       user:
         name: alertmanager
         system: yes
         createhome: no
         shell: /bin/false
- 
-   
-    - name: Download alertmanager
-  unarchive:
-    src: "https://github.com/prometheus/alertmanager/releases/download/v{{ version }}/alertmanager-{{ version }}.linux-amd64.tar.gz"
-    dest: /tmp/
-    remote_src: no
     
     - name: Start alertmanager service
   service:
