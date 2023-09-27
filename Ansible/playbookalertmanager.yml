@@ -24,8 +24,8 @@
       notify:
         - reload daemon
 
-    - name: Start alertmanager service
-      command: sudo systemctl alertmanager start
+    - name: Start alertmanager
+      command: sudo systemctl alertmanager
     
 
     - name: Check if alertmanager is accessible
