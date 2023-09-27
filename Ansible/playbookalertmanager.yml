@@ -13,15 +13,29 @@
         shell: /bin/false
  
    
-    - name: Installing alertmanager, Update and upgrade monitoringserver (monitoring machine)
-      yum:
-        name: "{{item}}"
-        state: latest
-        update_cache: yes
-      loop:
-        - prometheus-alertmanager
+    - name: Download alertmanager
+  unarchive:
+    src: "https://github.com/prometheus/alertmanager/releases/download/v{{ version }}/alertmanager-{{ version }}.linux-amd64.tar.gz"
+    dest: /tmp/
+    remote_src: no
         
-        
+    - name: Delete alertmanager tmp folder
+  file:
+    path: '/tmp/alertmanager-{{ version }}.linux-amd64'
+    state: absent
+    
+    - name: Start alertmanager service
+  service:
+    name: alertmanager
+    state: started
+    enabled: yes
+
+- name: Check if alertmanager is accessible
+  uri:
+    url: http://localhost:9093
+    method: GET
+    status_code: 200
+
     - name: enable alertmanager
       command: sudo systemctl restart prometheus-alertmanager
 
