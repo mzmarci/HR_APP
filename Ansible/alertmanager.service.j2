@@ -4,12 +4,18 @@ Description=Alertmanager
 Wants=network-online.target
 After=network-online.target
 
+StartLimitIntervalSec=500
+StartLimitBurst=5
+
 [Service]
 User=alertmanager
 Group=alertmanager
 Type=simple
-WorkingDirectory=/etc/alertmanager/
+Restart=on-failure
+RestartSec=5s
 ExecStart=/usr/local/bin/alertmanager \
-    --config.file=/etc/alertmanager/alertmanager.yml
+  --storage.path=/alertmanager-data \
+  --config.file=/etc/alertmanager/alertmanager.yml
+
 [Install]
 WantedBy=multi-user.target
