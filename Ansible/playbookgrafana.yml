@@ -20,9 +20,9 @@
   - name: create grafana user
     user:
       name: grafana
-      shell: /bin/false
-      createhome: false
+      createhome: no
       system: true
+      shell: /bin/false
 
   - name: start the grafana-server service
     systemd:
