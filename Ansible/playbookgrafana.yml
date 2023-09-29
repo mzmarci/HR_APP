@@ -17,12 +17,6 @@
        dest: /tmp/
        remote_src: yes
 
-  - name: create grafana user
-    user:
-      name: grafana
-      createhome: no
-      system: true
-      shell: /bin/false
 
   - name: start the grafana-server service
     systemd:
