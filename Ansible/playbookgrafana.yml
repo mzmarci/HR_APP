@@ -17,30 +17,16 @@
        dest: /tmp/
        remote_src: yes
 
-  - name: Add alertmanager user
+  - name: create grafana user
     user:
-      name: alertmanager
-      system: yes
-      createhome: no
+      name: grafana
       shell: /bin/false
+      createhome: false
+      system: true
 
-    - name: install grafana
-      yum:
-        name: grafana
-        state: latest
-        update_cache: yes
-
-    - name: start service grafana-server
-      systemd:
-        name: grafana-server
-        state: started
-        enabled: yes
-        
-    - name: wait for service up
-      uri:
-        url: "http://127.0.0.1:3000"
-        status_code: 200
-        register: __result
-        until: __result.status == 200
-        retries: 120
-        delay: 1
+  - name: start the grafana-server service
+    systemd:
+      name: grafana-server
+      state: started
+      enabled: yes
+      daemon_reload: yes
