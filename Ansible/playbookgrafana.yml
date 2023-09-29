@@ -5,20 +5,24 @@
   become_method: sudo
 
   tasks:
-   - name: install gpg
-     yum:
-       name: gnupg,software-properties-common
-       state: present
-       update_cache: yes
+   - name: Download grafana
+     unarchive:
+       src: "https://dl.grafana.com/oss/release/grafana-8.1.5.linux-amd64.tar.gz"
+       dest: /tmp/
+       remote_src: yes 
         
-    - name: add gpg hey
-      yum:
-        url: "https://packages.grafana.com/gpg.key"
+   - name: unzip the grafana 
+     unarchive:
+       src: "tar -zxvf grafana-8.1.5.linux-amd64.tar.gz"
+       dest: /tmp/
+       remote_src: yes
 
-    - name: add repository
-      yum_repository:
-        repo: "deb https://packages.grafana.com/oss/deb stable main"             
-        state: present
+  - name: Add alertmanager user
+    user:
+      name: alertmanager
+      system: yes
+      createhome: no
+      shell: /bin/false
 
     - name: install grafana
       yum:
@@ -31,11 +35,12 @@
         name: grafana-server
         state: started
         enabled: yes
+        
     - name: wait for service up
       uri:
         url: "http://127.0.0.1:3000"
         status_code: 200
-      register: __result
-      until: __result.status == 200
-      retries: 120
-      delay: 1
+        register: __result
+        until: __result.status == 200
+        retries: 120
+        delay: 1
