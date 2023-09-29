@@ -54,7 +54,7 @@ pipeline {
                  pwd
                  ls
                  ANSIBLE_HOST_KEY_CHECKING=false ansible-playbook -i inventory --key-file $keyfile playbook.yml -u ec2-user
-                // ANSIBLE_HOST_KEY_CHECKING=false ansible-playbook -i inventory --key-file $keyfile playbookalertmanager.yml -u ec2-user
+                 ANSIBLE_HOST_KEY_CHECKING=false ansible-playbook -i inventory --key-file $keyfile playbookalertmanager.yml -u ec2-user
                  ANSIBLE_HOST_KEY_CHECKING=false ansible-playbook -i inventory --key-file $keyfile playbookgrafana.yml -u ec2-user
                  ANSIBLE_HOST_KEY_CHECKING=false ansible-playbook -i inventory --key-file $keyfile playbooknode-export.yml -u ec2-user
                  ANSIBLE_HOST_KEY_CHECKING=false ansible-playbook -i inventory --key-file $keyfile playbookprometheus.yml ec2-user
