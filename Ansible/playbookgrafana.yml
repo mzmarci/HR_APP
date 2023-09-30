@@ -3,24 +3,20 @@
   become: yes
   #become_user: root
   become_method: sudo
-
   tasks:
-   - name: Download grafana
-     unarchive:
-       src: "https://dl.grafana.com/oss/release/grafana-8.1.5.linux-amd64.tar.gz"
-       dest: /tmp/
-       remote_src: yes 
-        
-   - name: unzip the grafana 
-     unarchive:
-       src: "tar -zxvf grafana-8.1.5.linux-amd64.tar.gz"
-       dest: /tmp/
-       remote_src: yes
+     - name: Install grafana
+       yum:
+         name: https://s3-us-west-2.amazonaws.com/grafana-releases/release/grafana-5.4.3-1.x86_64.rpm
+         state: latest
 
+     - name: "Grafana server started"
+       service:
+         name: grafana-server
+         enabled: true
+         state: started
 
-  - name: start the grafana-server service
-    systemd:
-      name: grafana-server
-      state: started
-      enabled: yes
-      daemon_reload: yes
+     - name: "Check if Grafana is accessible."
+       uri:
+         url: http://127.0.0.1:3000
+         method: GET
+         status_code: 200
