@@ -4,24 +4,42 @@
   #become_user: root
   become_method: sudo
   tasks:
-     - name: Install grafana
-       yum:
-         name: https://dl.grafana.com/oss/release/grafana-8.1.5.linux-amd64.tar.gz
-         state: latest
+    - name: install gpg
+      yum:
+        name: gnupg,software-properties-common
+        state: present
+        update_cache: yes
+        cache_valid_time: 3600
 
-     - name: Unzip  grafana
-       yum:
-         name: tar -zxvf grafana-8.1.5.linux-amd64.tar.gz
-         state: latest
+    - name: add gpg hey
+      yum_key:
+        url: "https://packages.grafana.com/gpg.key"
+        validate_certs: no
 
-     - name: "Grafana server started"
-       service:
-         name: grafana-server
-         enabled: true
-         state: started
+    - name: add repository
+      yum_repository:
+        repo: "deb https://packages.grafana.com/oss/deb stable main"             
+        state: present
+        validate_certs: no
 
-     - name: "Check if Grafana is accessible."
-       uri:
-         url: http://127.0.0.1:3000
-         method: GET
-         status_code: 200
+    - name: install grafana
+      yum:
+        name: grafana
+        state: latest
+        update_cache: yes
+        cache_valid_time: 3600
+
+    - name: start service grafana-server
+      systemd:
+        name: grafana-server
+        state: started
+        enabled: yes
+
+    - name: wait for service up
+      uri:
+        url: "http://127.0.0.1:3000"
+        status_code: 200
+      register: __result
+      until: __result.status == 200
+      retries: 120
+      delay: 1
