@@ -6,7 +6,12 @@
   tasks:
      - name: Install grafana
        yum:
-         name: https://s3-us-west-2.amazonaws.com/grafana-releases/release/grafana-5.4.3-1.x86_64.rpm
+         name: https://dl.grafana.com/oss/release/grafana-8.1.5.linux-amd64.tar.gz
+         state: latest
+
+     - name: Unzip  grafana
+       yum:
+         name: tar -zxvf grafana-8.1.5.linux-amd64.tar.gz
          state: latest
 
      - name: "Grafana server started"
