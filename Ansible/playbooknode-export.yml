@@ -5,21 +5,36 @@
   become_method: sudo
 
   tasks:
+ 
+    - name: Install prometheus node exporter
+      unarchive:
+        src: "https://github.com/prometheus/node_exporter/releases/download/v{{ version }}/node_exporter-{{ version }}.linux-amd64.tar.gz"
+        dest: /tmp/
+        remote_src: yes
+
     - name: Add node_exporter user
       user:
         name: node_exporter
         system: yes
         createhome: no
         shell: /bin/false
- 
-   
-    - name: Installing node_exporter, Update and upgrade hrapp machine (monitoring machine)
-      yum:
-        name: "{{item}}"
-        state: latest
-        update_cache: yes
-      loop:
-        - prometheus-node-exporter
+
+    - name: Install Prometheus alert manager systemd service
+      template:
+        src: nodeexpoterservice.j2
+        dest: /etc/systemd/system/nodeexpoterservice
+
+    - name: Start node_exporter service
+      service:
+        name: node_exporter
+        state: started
+        enabled: yes
+
+    - name: Check if node exporter emits metrices
+      uri:
+        url: http://127.0.0.1:9100/metrics
+        method: GET
+        status_code: 200
 
         
           
