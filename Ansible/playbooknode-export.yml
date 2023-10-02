@@ -28,12 +28,6 @@
         dest: /etc/systemd/system/nodeexpoterservice
 
 
-    - name: Start node_exporter service
-      service:
-        name: nodeexpoterservice.j2
-        state: started
-        enabled: yes
-
     - name: Check if node exporter emits metrices
       uri:
         url: http://127.0.0.1:9100/metrics
