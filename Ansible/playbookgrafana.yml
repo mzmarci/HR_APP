@@ -4,10 +4,15 @@
   #become_user: root
   become_method: sudo
   tasks:
-    - name: Install grafana
+   
+    - name: install grafana
       yum:
-        name: grafana
+        name: "{{item}}"
         state: latest
+        update_cache: yes
+      loop:
+       # - ca-certificates
+        - grafana
 
 
     - name: "Grafana server started"
