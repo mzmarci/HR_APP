@@ -5,14 +5,10 @@
   become_method: sudo
   tasks:
    
-    - name: install grafana
+    - name: Install grafana
       yum:
-        name: "{{item}}"
+        name: https://s3-us-west-2.amazonaws.com/grafana-releases/release/grafana-{{ version }}-1.x86_64.rpm
         state: latest
-        update_cache: yes
-      loop:
-       # - ca-certificates
-        - grafana
 
 
     - name: "Grafana server started"
