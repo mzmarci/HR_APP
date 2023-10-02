@@ -6,7 +6,7 @@
   tasks:
     - name: Install grafana
       yum:
-        name: https://dl.grafana.com/enterprise/release/grafana-enterprise-10.1.4-1.x86_64.rpm
+        name: grafana
         state: latest
 
 
