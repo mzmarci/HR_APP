@@ -9,7 +9,7 @@
 
   tasks:
  
-    - name: Install prometheus node exporter
+    - name: Install node exporter
       unarchive:
         src: "https://github.com/prometheus/node_exporter/releases/download/v{{ version }}/node_exporter-{{ version }}.linux-amd64.tar.gz"
         dest: /tmp/
@@ -38,7 +38,7 @@
           
         
     - name: enable node-exporter
-      command: sudo systemctl restart prometheus-node-exporter
+      command: sudo systemctl restart node-exporter
 
    
    # - name: Start node-exporter Service
