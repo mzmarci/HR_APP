@@ -30,7 +30,7 @@
 
     - name: Start node_exporter service
       service:
-        name: nodeexpoterservice
+        name: nodeexpoterservice.j2
         state: started
         enabled: yes
 
