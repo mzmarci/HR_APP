@@ -1,0 +1,21 @@
+
+[Unit]
+Description=nodeexporter
+Wants=network-online.target
+After=network-online.target
+
+StartLimitIntervalSec=500
+StartLimitBurst=5
+
+[Service]
+User=nodeexporter
+Group=nodeexporter
+Type=simple
+Restart=on-failure
+RestartSec=5s
+ExecStart=/usr/local/bin/nodeexporter \
+  --storage.path=/nodeexporter-data \
+  --config.file=/etc/nodeexporter/node-export.yml
+
+[Install]
+WantedBy=multi-user.target

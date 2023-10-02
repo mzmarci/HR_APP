@@ -23,8 +23,8 @@
 
     - name: Install nodeexporter service
       template:
-        src: nodexpoterservice.j2
-        dest: /etc/systemd/system/nodexpoterservice
+        src: nodeexpoterservice.j2
+        dest: /etc/systemd/system/nodeexpoterservice
         remote_src: yes
 
     - name: Start node_exporter service
