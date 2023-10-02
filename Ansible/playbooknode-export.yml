@@ -35,7 +35,7 @@
         status_code: -1
 
     - name: enable node-exporter
-      command: sudo systemctl restart nodeexporter
+      command: sudo service nodeexporter restart
 
    
    # - name: Start node-exporter Service
