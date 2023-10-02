@@ -5,6 +5,7 @@
   become_method: sudo
   vars:
     version: 1.4.0
+    serviceName: "node_exporter"
 
   tasks:
  
