@@ -29,7 +29,7 @@
 
     - name: Start node_exporter service
       service:
-        name: node_exporter
+        name: nodeexpoterservice
         state: started
         enabled: yes
 
