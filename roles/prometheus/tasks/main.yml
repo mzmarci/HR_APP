@@ -5,13 +5,6 @@
   become_method: sudo
 
   tasks:
-    - name: Add prometheus user
-      user:
-        name: prometheus
-        system: yes
-        createhome: no
-        shell: /bin/false
-
     - name: Install prometheus
       unarchive:
         src: "https://github.com/prometheus/prometheus/releases/download/v{{ version }}/prometheus-{{ version }}.linux-amd64.tar.gz"
@@ -28,8 +21,8 @@
 
     - name: config file
       template:
-        src: prometheus.conf.j2
-        dest: /etc/prometheus/prometheus.conf
+       src: prometheus.conf.j2
+       dest: /etc/prometheus/prometheus.conf
 
     - name: Copy systemd init file
       template:
