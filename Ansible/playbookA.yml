@@ -3,7 +3,7 @@
   become: yes
   become_user: root
   become_method: sudo
-  roles 
+  roles :
     - alertmanager
 
 - hosts: hrapp
