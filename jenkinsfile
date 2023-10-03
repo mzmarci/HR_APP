@@ -53,7 +53,7 @@ pipeline {
                  cd Ansible
                  pwd
                  ls
-                 ANSIBLE_HOST_KEY_CHECKING=false ansible-playbook -i inventory --key-file $keyfile playbook.yml
+                 ANSIBLE_HOST_KEY_CHECKING=false ansible-playbook -i inventory --key-file $keyfile playbookA.yml
 
                '''
          }
