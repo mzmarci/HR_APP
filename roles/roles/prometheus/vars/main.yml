@@ -1,0 +1,5 @@
+---
+serviceName: "prometheus"
+userId: "prometheus"
+groupId: "prometheus"
+version: "2.3.2"
