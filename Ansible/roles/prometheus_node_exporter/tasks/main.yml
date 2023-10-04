@@ -14,7 +14,7 @@
 
     - name: Install nodeexporter service
       template:
-        src: nodeexpoterservice.j2
+        src: init.service.j2
         dest: /etc/systemd/system/nodeexpoterservice
 
 
