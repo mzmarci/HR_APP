@@ -1,14 +1,4 @@
----
-- hosts: hrapp
-  become: yes
-  #become_user: root
-  become_method: sudo
-  vars:
-    version: 1.4.0
-    serviceName: "node_exporter"
 
-  tasks:
- 
     - name: Install node exporter
       unarchive:
         src: "https://github.com/prometheus/node_exporter/releases/download/v{{ version }}/node_exporter-{{ version }}.linux-amd64.tar.gz"

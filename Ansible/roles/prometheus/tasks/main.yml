@@ -1,10 +1,4 @@
----
-- hosts: monitoringserver
-  become: yes
-  #become_user: root
-  become_method: sudo
 
-  tasks:
     - name: Install prometheus
       unarchive:
         src: "https://github.com/prometheus/prometheus/releases/download/v{{ version }}/prometheus-{{ version }}.linux-amd64.tar.gz"
