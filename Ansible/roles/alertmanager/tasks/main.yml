@@ -26,9 +26,6 @@
         method: GET
         status_code: -1
 
-    - name: enable alertmanager
-      command: sudo systemctl restart alertmanager
-
     
     - name: Start alertmanager service
       service:
