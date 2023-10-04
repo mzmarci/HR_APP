@@ -1,3 +1,7 @@
+    - name: Import Grafana GPG key
+      yum:
+        url: https://packages.grafana.com/gpg.key
+        state: present
 
     - name: Install grafana
       yum:
