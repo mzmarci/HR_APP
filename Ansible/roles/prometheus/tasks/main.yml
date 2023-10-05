@@ -74,4 +74,4 @@
   uri:
     url: http://34.244.125.42:9090
     method: GET
-    status_code: -1
+    status_code: 200
