@@ -7,7 +7,7 @@
         remote_src: yes
 
     - name: "Grafana server started"
-      service:
+      systemd:
         name: grafana-server
         enabled: true
         state: started
