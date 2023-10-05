@@ -74,27 +74,27 @@ resource "aws_instance" "Hr_App3" {
   key_name               = var.ec2_key_name
   vpc_security_group_ids = [aws_security_group.prometheus.id]
   //database_security_group = var.database_security_group.id
-  subnet_id                   = aws_subnet.subnet_1.id
-  iam_instance_profile        = aws_iam_instance_profile.prometheus_iam_instance_profile.name
+  subnet_id            = aws_subnet.subnet_1.id
+  iam_instance_profile = aws_iam_instance_profile.prometheus_iam_instance_profile.name
   //user_data                   = templatefile("${path.module}/prometheus.yml")
 
   # Copy the prometheus file to instance
   //provisioner "file" {
-   // source      = "./upload"
-   // destination = "/tmp"
+  // source      = "./upload"
+  // destination = "/tmp"
   //}
-  
-provisioner "file" {
+
+  provisioner "file" {
     connection {
-      host = self.public_ip
-      type     = "ssh"
-      user     = "ec2-user"
+      host        = self.public_ip
+      type        = "ssh"
+      user        = "ec2-user"
       private_key = file("${path.module}/test100.pem")
     }
     source      = "./upload"
     destination = "/tmp"
   }
-  
+
   associate_public_ip_address = true
   tags = {
     Name = "Montoring server"
