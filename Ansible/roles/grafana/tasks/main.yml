@@ -2,7 +2,7 @@
 
     - name: Download grafana
       unarchive:
-        src: "https://dl.grafana.com/enterprise/release/grafana-enterprise-10.1.4.linux-amd64.tar.gz"
+        src: "https://s3-us-west-2.amazonaws.com/grafana-releases/release/grafana-{{ version }}-1.x86_64.rpm"
         dest: /tmp/
         remote_src: yes
 
