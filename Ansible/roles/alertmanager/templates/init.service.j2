@@ -1,21 +1,16 @@
-
 [Unit]
-Description=Alertmanager
+Description={{serviceName}}
 Wants=network-online.target
 After=network-online.target
 
-StartLimitIntervalSec=500
-StartLimitBurst=5
-
 [Service]
-User=alertmanager
-Group=alertmanager
+User={{ userId }}
+Group={{ groupId }}
+Restart=always
+RestartSec=2
+StartLimitInterval=0
 Type=simple
-Restart=on-failure
-RestartSec=5s
-ExecStart=/usr/local/bin/alertmanager \
-  --storage.path=/alertmanager-data \
-  --config.file=/etc/alertmanager/alertmanager.yml
+ExecStart={{ exec_command }}
 
 [Install]
 WantedBy=multi-user.target

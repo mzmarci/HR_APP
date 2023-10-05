@@ -1,5 +1,5 @@
 - name: "Restart the Grafana service."
-  systemd:
+  service:
     name: grafana-server
     state: restarted
   listen: event_restart_grafana
