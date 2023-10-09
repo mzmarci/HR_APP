@@ -5,7 +5,5 @@ groupId: "prometheus"
 exec_command: "/usr/local/bin/prometheus
  --config.file=/etc/prometheus/prometheus.conf
   --storage.tsdb.path=/data/prometheus
-   --storage.tsdb.retention=2d
-   --web.listen-address=0.0.0.0:9090
-   --web.enable-lifecycle"
+   --storage.tsdb.retention=2d"
 version: "2.3.2"
