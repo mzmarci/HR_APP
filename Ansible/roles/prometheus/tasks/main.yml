@@ -70,8 +70,17 @@
     state: started
     enabled: yes
 
+
+
+
+- name: RE-Start prometheus service
+  service:
+    name: prometheus
+    state: restarted
+    enabled: yes
+
 - name: Check if prometheus is accessible
   uri:
     url: http://localhost:9090
     method: GET
-    status_code: -1
+    status_code: 200
