@@ -6,10 +6,18 @@ scrape_configs:
     scrape_interval: 5s
     static_configs:
       - targets: ['localhost:9090']
+      
   - job_name: 'node_exporter'
     scrape_interval: 5s
     static_configs:
       - targets: ['localhost:9100']
+
+  - job_name: 'hrapp'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['54.171.199.225:9090']
+      - targets: ['3.250.18.85:9090']
+
 
 rule_files:
   - alert.rules.yml
@@ -18,3 +26,4 @@ alerting:
   alertmanagers:
   - static_configs:
     - targets: ['localhost:9093']
+   
