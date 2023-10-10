@@ -10,6 +10,11 @@ scrape_configs:
     scrape_interval: 5s
     static_configs:
       - targets: ['localhost:9100']
+  - job_name: 'hrapp'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['34.245.185.125:9100']
+      - targets: ['34.242.238.149:9100']
 
 rule_files:
   - alert.rules.yml
