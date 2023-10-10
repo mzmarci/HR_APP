@@ -81,6 +81,6 @@
 
 - name: Check if prometheus is accessible
   uri:
-    url: http://34.253.229.244:9090
+    url: http://localhost:9090
     method: GET
     status_code: 200
