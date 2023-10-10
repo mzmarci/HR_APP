@@ -2,7 +2,6 @@
   yum:
     name: https://s3-us-west-2.amazonaws.com/grafana-releases/release/grafana-{{ version }}-1.x86_64.rpm
     state: latest
-    disable_gpg_check: true
 
 - name: "Grafana configuration file copy"
   template:
@@ -18,6 +17,6 @@
 
 - name: "Check if Grafana is accessible."
   uri:
-    url: http://localhost:3000
+    url: http://127.0.0.1:3000
     method: GET
     status_code: 200

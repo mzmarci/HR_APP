@@ -6,7 +6,7 @@
   roles:
     - alertmanager
 
-- hosts: hrapp
+- hosts: monitoringserver
   become: yes
   become_user: root
   become_method: sudo
