@@ -39,7 +39,7 @@
     - name: Pull default Docker image
       community.docker.docker_image:
         name: mzmarci/hrapp:v3
-        source: pull
+        remote_src: yes
 
     - name: Run Docker Container
       docker_container:
