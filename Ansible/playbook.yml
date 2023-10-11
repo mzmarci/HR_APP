@@ -37,9 +37,9 @@
         state: restarted
 
     - name: Pull default Docker image
-      community.docker.docker_image:
+      docker_image:
         name: mzmarci/hrapp:v3
-        remote_src: yes
+        source: pull
 
     - name: Run Docker Container
       docker_container:
