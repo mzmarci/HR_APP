@@ -36,11 +36,6 @@
         name: docker 
         state: restarted
 
-    - name: Pull default Docker image
-      docker_image:
-        name: mzmarci/hrapp:v3
-        source: pull
-
     - name: Run Docker Container
       docker_container:
         name: hrapp_container 
