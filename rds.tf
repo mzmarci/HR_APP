@@ -1,12 +1,9 @@
 # configured aws provider with proper credentials
 
 # create default vpc if one does not exit
-resource "aws_default_vpc" "default_vpc" {
+//resource "aws_default_vpc" "default_vpc" {
 
-  tags = {
-    Name = "default vpc"
-  }
-}
+
 
 # use data source to get all avalablility zones in region
 data "aws_availability_zones" "available_zones" {}
@@ -25,7 +22,7 @@ resource "aws_default_subnet" "subnet_2" {
 resource "aws_security_group" "webserver_security_group" {
   name        = "webserver security group"
   description = "enable postgres t0 access port 80"
-  vpc_id      = aws_default_vpc.default_vpc.id
+  vpc_id      = aws_vpc.hr_app_vpc.id
 
   ingress {
     description = "http access"
@@ -51,7 +48,7 @@ resource "aws_security_group" "webserver_security_group" {
 resource "aws_security_group" "database_security_group" {
   name        = "database security group"
   description = "enable postgres access on port 5432"
-  vpc_id      = aws_default_vpc.default_vpc.id
+  vpc_id      = aws_vpc.hr_app_vpc.id
 
   ingress {
     description     = "postgres"
@@ -77,7 +74,7 @@ resource "aws_security_group" "database_security_group" {
 # create the subnet group for the rds instance
 resource "aws_db_subnet_group" "database_subnet_group" {
   name        = "database_subnets"
-  subnet_ids  = [aws_default_subnet.subnet_1.id, aws_default_subnet.subnet_2.id]
+  subnet_ids  = [aws_subnet.subnet_1.id, aws_subnet.subnet_2.id]
   description = "subnet for database instance"
 
   tags = {
