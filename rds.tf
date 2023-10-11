@@ -9,40 +9,15 @@
 data "aws_availability_zones" "available_zones" {}
 
 # create a default subnet in the first az if one does not exit
-//resource resource "aws_subnet" "subnet_1" {
- // availability_zone = data.aws_availability_zones.available_zones.names[0]
+//resource "aws_subnet" "subnet_1" {
+ //availability_zone = data.aws_availability_zones.available_zones.names[0]
 //}
 
 # create a default subnet in the second az if one does not exit
-//resource resource "aws_subnet" "subnet_2" {
+//resource  "aws_subnet" "subnet_2" {
   //availability_zone = data.aws_availability_zones.available_zones.names[1]
 //}
 
-# create security group for the web server
-resource "aws_security_group" "webserver_security_group" {
-  name        = "webserver security group"
-  description = "enable postgres t0 access port 80"
-  vpc_id      = aws_vpc.hr_app_vpc.id
-
-  ingress {
-    description = "http access"
-    from_port   = 80
-    to_port     = 80
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = -1
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  tags = {
-    Name = "webserver security group"
-  }
-}
 
 # create security group for the database
 resource "aws_security_group" "database_security_group" {
