@@ -58,15 +58,7 @@ pipeline {
                  cd Ansible
                  pwd
                  ls
-                 ANSIBLE_HOST_KEY_CHECKING=false ansible-playbook -i inventory 
-                 --key-file $keyfile 
-                 --POSTGRES_HOST $POSTGRES_HOST
-                 --POSTGRES_PASSWORD $POSTGRES_PASSWORD
-                 --AWS_ACCESS_NAME $AWS_ACCESS_NAME        
-                 --AWS_KEY_NAME $AWS_KEY_NAME
-                   playbook.yml
-                 
-
+                 ANSIBLE_HOST_KEY_CHECKING=false ansible-playbook -i inventory --key-file $keyfile playbook.yml
                  ANSIBLE_HOST_KEY_CHECKING=false ansible-playbook -i inventory --key-file $keyfile playbookA.yml
                '''
          }
