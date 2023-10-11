@@ -9,14 +9,14 @@
 data "aws_availability_zones" "available_zones" {}
 
 # create a default subnet in the first az if one does not exit
-resource "aws_default_subnet" "subnet_1" {
-  availability_zone = data.aws_availability_zones.available_zones.names[0]
-}
+//resource resource "aws_subnet" "subnet_1" {
+ // availability_zone = data.aws_availability_zones.available_zones.names[0]
+//}
 
 # create a default subnet in the second az if one does not exit
-resource "aws_default_subnet" "subnet_2" {
-  availability_zone = data.aws_availability_zones.available_zones.names[1]
-}
+//resource resource "aws_subnet" "subnet_2" {
+  //availability_zone = data.aws_availability_zones.available_zones.names[1]
+//}
 
 # create security group for the web server
 resource "aws_security_group" "webserver_security_group" {
@@ -55,7 +55,7 @@ resource "aws_security_group" "database_security_group" {
     from_port       = 5432
     to_port         = 5432
     protocol        = "tcp"
-    security_groups = [aws_security_group.webserver_security_group.id]
+    security_groups = [aws_security_group.hr_app_security_group.id]
   }
 
   egress {
