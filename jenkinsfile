@@ -58,6 +58,10 @@ pipeline {
                  cd HR_APP
                  cd Ansible
                  pwd
+
+                 echo -n $AWS_KEY_NAME | base64 >marci
+                 cat marci
+                 
                  ls
                  echo ANSIBLE_HOST_KEY_CHECKING=false ansible-playbook -i inventory --key-file $keyfile
                   playbook.yml 
