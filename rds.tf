@@ -10,12 +10,12 @@ data "aws_availability_zones" "available_zones" {}
 
 # create a default subnet in the first az if one does not exit
 //resource "aws_subnet" "subnet_1" {
- //availability_zone = data.aws_availability_zones.available_zones.names[0]
+//availability_zone = data.aws_availability_zones.available_zones.names[0]
 //}
 
 # create a default subnet in the second az if one does not exit
 //resource  "aws_subnet" "subnet_2" {
-  //availability_zone = data.aws_availability_zones.available_zones.names[1]
+//availability_zone = data.aws_availability_zones.available_zones.names[1]
 //}
 
 
