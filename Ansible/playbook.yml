@@ -50,7 +50,7 @@
       docker_container:
         name: hrapp_container 
         image: mzmarci/hrapp:v3  
-        port: 80:5000
+        ##port: 80:5000
         state: started
         pull: true
         env:
