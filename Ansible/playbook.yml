@@ -44,25 +44,40 @@
 
     - name: Install Docker Module for Python
       pip:
-        name: docker    
+        name: docker 
 
-    - name: Run Docker Container
-      docker_container:
-        name: hrapp_container 
-        image: mzmarci/hrapp:v3  
-        ##port: 80:5000
-        state: started
-        pull: true
-        env:
-          POSTGRES_HOST: "{{POSTGRES_HOST}}"
-          POSTGRES_USER: project
-          POSTGRES_DATABASE_NAME: postgres
-          POSTGRES_PASSWORD: "{{POSTGRES_PASSWORD}}"
-          TO_ADDRESS: mzmazy100@gmail.com
-          SOURCE_ADDRESS: mzmazy100@gmail.com
-          AWS_REGION_NAME: eu-west-1
-          AWS_ACCESS_NAME: "{{AWS_ACCESS_NAME}}"
-          AWS_KEY_NAME: "{{AWS_KEY_NAME}}"
+    - name: building docker container image out of the docker image that has been built from the previous module
+      ansible.builtin.command: docker run -d -p 80:5000 
+      -e POSTGRES_HOST="{{POSTGRES_HOST}}"
+      -e POSTGRES_USER=project 
+      -e POSTGRES_DATABASE_NAME="postgres" 
+      -e POSTGRES_PASSWORD= "{{POSTGRES_PASSWORD}}" 
+      -e TO_ADDRESS="olakunleoyeleye123@gmail.com"
+      -e SOURCE_ADDRESS="olakunleoyeleye123@gmail.com" 
+      -e AWS_REGION_NAME="eu-west-1"
+      -e AWS_KEY_NAME="{{AWS_KEY_NAME}}"  
+      -e AWS_ACCESS_NAME="{{AWS_ACCESS_NAME}}" mzmarci/hrapp:v3
+
+   # - name: run docker container
+   #   community.docker.docker_container:
+   #     name: hrapp_container
+   #     image: mzmarci/hrapp:v3 
+   #     state: started
+   #     restart: true
+   #     ports:
+   #     # Publish container port 9000 as host port 8080
+   #     - "80:5000"
+   #     pull: true
+   #     env:
+   #         POSTGRES_HOST: "{{POSTGRES_HOST}}"
+   #         POSTGRES_USER: project
+   #         POSTGRES_DATABASE_NAME: postgres
+   #         POSTGRES_PASSWORD: "{{POSTGRES_PASSWORD}}"
+   #         TO_ADDRESS: mzmazy100@gmail.com
+   #         SOURCE_ADDRESS: mzmazy100@gmail.com
+   #         AWS_REGION_NAME: eu-west-1
+   #         AWS_ACCESS_NAME: "{{AWS_ACCESS_NAME}}"
+   #         AWS_KEY_NAME: "{{AWS_KEY_NAME}}"
 
 
 
