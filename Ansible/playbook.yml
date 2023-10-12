@@ -3,10 +3,11 @@
   become: true
   become_method: sudo
   vars: 
+    AWS_KEY_NAME: 
     POSTGRES_HOST: 
     POSTGRES_PASSWORD: 
     AWS_ACCESS_NAME: 
-    AWS_KEY_NAME: 
+
   
   tasks:
 
