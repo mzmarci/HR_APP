@@ -2,6 +2,12 @@
 - hosts: hrapp
   become: true
   become_method: sudo
+  vars: 
+    POSTGRES_HOST: 
+    POSTGRES_PASSWORD: 
+    AWS_ACCESS_NAME: 
+    AWS_KEY_NAME: 
+  
   tasks:
 
     - name: Install git
@@ -36,12 +42,17 @@
         name: docker 
         state: restarted
 
+    - name: Install Docker Module for Python
+      pip:
+        name: docker    
+
     - name: Run Docker Container
       docker_container:
         name: hrapp_container 
         image: mzmarci/hrapp:v3  
         port: 80:5000
         state: started
+        pull: true
         env:
           POSTGRES_HOST: "{{POSTGRES_HOST}}"
           POSTGRES_USER: project
