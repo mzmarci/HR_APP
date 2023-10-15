@@ -42,12 +42,7 @@
       service: 
         name: docker 
         state: restarted
-
-    - name: log into docker hub registry
-      docker_login:
-        email: "mzmazy100@gmail.com"
-        username: "mzmarci"
-        password: "Queenmarcy@193"  
+ 
 
     - name: Install Docker Module for Python
       pip:
