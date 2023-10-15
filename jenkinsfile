@@ -42,7 +42,7 @@ pipeline {
          }
        }       
     
-       stage ("ls") {
+       stage ("Build image") {
          steps {
             sh '''
                ls
@@ -52,19 +52,15 @@ pipeline {
        }
            
     
-       stage ("test run ansible") {
+       stage ("Run ansible") {
          steps {
             sh '''
                  cd HR_APP
                  cd Ansible
-                 pwd
-
-                 echo -n $AWS_KEY_NAME | base64 >marci
-                 cat marci
-                 
+                 pwd 
                  ls
-                 echo ANSIBLE_HOST_KEY_CHECKING=false ansible-playbook -i inventory --key-file $keyfile playbook.yml -u ec2-user 
-                  ANSIBLE_HOST_KEY_CHECKING=false ansible-playbook -i inventory  --key-file $keyfile playbookA.yml -u ec2-user 
+                 ANSIBLE_HOST_KEY_CHECKING=false ansible-playbook -i inventory --key-file $keyfile playbook.yml -u ec2-user 
+                 ANSIBLE_HOST_KEY_CHECKING=false ansible-playbook -i inventory  --key-file $keyfile playbookA.yml -u ec2-user 
          }
                '''
                //#ANSIBLE_HOT_KEY_CHECKING=false ansible-playbook -i inventory  --key-file $keyfile  -e POSTGRES_HOST=$POSTGRES_HOST   -e POSTGRES_PASSWORD =$POSTGRES_PASSWORD  -e AWS_ACCESS_NAME= $AWS_ACCESS_NAME  -e AWS_KEY_NAME= $AWS_KEY_NAME  playbook.yml ANSIBLE_HOST_KEY_CHECKING=false ansible-playbook -i inventory --key-file $keyfile playbookA.yml
