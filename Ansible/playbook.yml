@@ -43,6 +43,11 @@
         name: docker 
         state: restarted
 
+    - name: Log into DockerHub
+      docker_login:
+        username: mzmarci
+        password: Queenmarcy@193   
+
     - name: Install Docker Module for Python
       pip:
         name: docker 
