@@ -63,14 +63,8 @@ pipeline {
                  cat marci
                  
                  ls
-                 echo ANSIBLE_HOST_KEY_CHECKING=false ansible-playbook -i inventory --key-file $keyfile
-                  playbook.yml 
-                 -e AWS_KEY_NAME=$AWS_KEY_NAME 
-                 -e AWS_ACCESS_NAME=$AWS_ACCESS_NAME
-                 -e POSTGRES_HOST=$POSTGRES_HOST
-                 -e POSTGRES_PASSWORD =$POSTGRES_PASSWORD
-                  -u ec2-user 
-                  ANSIBLE_HOST_KEY_CHECKING=false ansible-playbook -i inventory  --key-file $keyfile playbookA.yml
+                 echo ANSIBLE_HOST_KEY_CHECKING=false ansible-playbook -i inventory --key-file $keyfile playbook.yml -u ec2-user 
+                  ANSIBLE_HOST_KEY_CHECKING=false ansible-playbook -i inventory  --key-file $keyfile playbookA.yml -u ec2-user 
          }
                '''
                //#ANSIBLE_HOT_KEY_CHECKING=false ansible-playbook -i inventory  --key-file $keyfile  -e POSTGRES_HOST=$POSTGRES_HOST   -e POSTGRES_PASSWORD =$POSTGRES_PASSWORD  -e AWS_ACCESS_NAME= $AWS_ACCESS_NAME  -e AWS_KEY_NAME= $AWS_KEY_NAME  playbook.yml ANSIBLE_HOST_KEY_CHECKING=false ansible-playbook -i inventory --key-file $keyfile playbookA.yml
