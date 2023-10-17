@@ -63,8 +63,8 @@ resource "aws_db_instance" "db_instance" {
   engine                 = "postgres"
   engine_version         = "15.3"
   multi_az               = false
-  identifier             = "hr-project"
-  username               = "project"
+  identifier             = "project"
+  username               = "hr_project"
   password               = "marci123"
   instance_class         = "db.t3.micro"
   allocated_storage      = 400
