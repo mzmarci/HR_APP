@@ -72,5 +72,6 @@ resource "aws_db_instance" "db_instance" {
   vpc_security_group_ids = [aws_security_group.database_security_group.id]
   availability_zone      = data.aws_availability_zones.available_zones.names[0]
   db_name                = "projects"
+  publicly_accessible    = true
   skip_final_snapshot    = true
 }

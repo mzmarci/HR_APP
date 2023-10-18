@@ -10,8 +10,13 @@ scrape_configs:
   - job_name: 'node_exporter'
     scrape_interval: 5s
     static_configs:
-      - targets: ['localhost:9100', '34.253.210.49:9100', '3.254.139.231:9100']
+      - targets: ['localhost:9100']
 
+  - job_name: 'hrapp'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['34.253.210.49:9100']
+      - targets: ['3.254.139.231:9100']
 
 
 rule_files:
