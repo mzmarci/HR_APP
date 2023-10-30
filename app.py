@@ -9,8 +9,7 @@ app = Flask(__name__)
 version = "1.7.1"
 
 user = os.environ.get("POSTGRES_USER")
-# //pw = os.environ.get("POSTGRES_PASSWORD")
-pw = "marci123"
+pw = os.environ.get("POSTGRES_PASSWORD")
 host = os.environ.get("POSTGRES_HOST")
 db = os.environ.get("POSTGRES_DATABASE_NAME")
 DB_URL = f"postgresql+psycopg2://{user}:{pw}@{host}/{db}"

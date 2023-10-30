@@ -21,7 +21,6 @@ pipeline {
             git clone https://github.com/mzmarci/HR_APP.git
            
             '''
-            echo "${POSTGRES_PASSWORD}"
          }
        }
     
