@@ -2,14 +2,12 @@
 - hosts: hrapp
   become: true
   become_method: sudo
-  vars:
-    POSTGRES_HOST: 
+  vars: 
     AWS_ACCESS_KEY_ID: 
-    #POSTGRES_HOST: 
+    POSTGRES_HOST: 
     POSTGRES_PASSWORD: 
     AWS_SECRET_ACCESS_KEY: 
 
-  
   tasks:
 
     - name: Install git
