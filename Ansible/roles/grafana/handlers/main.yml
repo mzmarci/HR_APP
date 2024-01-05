@@ -1,5 +1,6 @@
-name: "Restart the Grafana service."
-service:
-  name: grafana-server
-  state: restarted
-listen: event_restart_grafana
+---
+-name: "Restart the Grafana service."
+ service:
+   name: grafana-server
+   state: restarted
+ listen: event_restart_grafana
